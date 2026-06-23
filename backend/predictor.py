@@ -28,25 +28,52 @@ BASE_FEATURES = [
 # LOAD MODELS
 # =====================================================
 
-severity_model = joblib.load(
-    "../models/severity_model.pkl"
-)
+try:
 
-congestion_model = joblib.load(
-    "../models/congestion_model.pkl"
-)
+    severity_model = joblib.load(
+        "../models/severity_model.pkl"
+    )
+
+    congestion_model = joblib.load(
+        "../models/congestion_model.pkl"
+    )
+
+    print("✅ Models Loaded Successfully")
+
+except Exception as e:
+
+    print(
+        "❌ Model Loading Error:",
+        e
+    )
+
+    raise e
+
 
 # =====================================================
 # LOAD ENCODERS
 # =====================================================
 
-encoders = joblib.load(
-    "../models/encoders.pkl"
-)
+try:
 
-severity_encoder = joblib.load(
-    "../models/severity_encoder.pkl"
-)
+    encoders = joblib.load(
+        "../models/encoders.pkl"
+    )
+
+    severity_encoder = joblib.load(
+        "../models/severity_encoder.pkl"
+    )
+
+    print("✅ Encoders Loaded Successfully")
+
+except Exception as e:
+
+    print(
+        "❌ Encoder Loading Error:",
+        e
+    )
+
+    raise e
 
 # =====================================================
 # PREPROCESS
@@ -380,7 +407,10 @@ def full_analysis(data):
             data,
             result
         )
-        auto_assign_officer(
+
+        if prediction_id:
+
+         auto_assign_officer(
             prediction_id,
             result["severity"]
         )
