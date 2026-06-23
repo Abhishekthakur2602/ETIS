@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from schemas import EventRequest
-from predictor import full_analysis
+#from predictor import full_analysis
 
 from routers.analytics import router as analytics_router
 from routers.incidents import router as incidents_router
@@ -29,6 +29,7 @@ from routers.timeline import (
 
 from routers.notifications import router as notifications_router
 from fastapi.middleware.cors import CORSMiddleware
+
 
 
 # =====================================
@@ -125,8 +126,5 @@ def root():
 # =====================================
 
 @app.post("/full-analysis")
-def analyze(request: EventRequest):
-
-    return full_analysis(
-        request.model_dump()
-    )
+def analyze():
+    return {"message": "temporarily disabled"}

@@ -2,7 +2,8 @@
 import joblib
 import pandas as pd
 
-from bert_engine import get_historical_summary
+def get_historical_summary(*args, **kwargs):
+    return {}
 from officers import find_nearest_officers
 from history import save_prediction
 from services.auto_assign import auto_assign_officer
@@ -168,19 +169,18 @@ def full_analysis(data):
     # HISTORICAL INTELLIGENCE
     # =================================
 
+    #historical_summary = {}
+
+   # if data.get("description"):
+
+       # historical_summary = (
+        #    get_historical_summary(
+           #     data["description"],
+           #     data["event_cause"],
+           #     data["priority"]
+           # )
+        #)
     historical_summary = {}
-
-    if data.get("description"):
-
-        historical_summary = (
-            get_historical_summary(
-                data["description"],
-                data["event_cause"],
-                data["zone"],
-                data["priority"]
-            )
-        )
-
     # =================================
     # RESOURCE ENGINE
     # =================================
