@@ -6,10 +6,9 @@ load_dotenv()
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
-conn = psycopg2.connect(
-    DATABASE_URL,
-    sslmode="require"
-)
+print("DATABASE_URL =", DATABASE_URL)
+
+conn = psycopg2.connect(DATABASE_URL)
 
 conn.autocommit = True
 
