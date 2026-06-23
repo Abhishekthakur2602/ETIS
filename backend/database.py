@@ -6,13 +6,13 @@ load_dotenv()
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
-print("DATABASE_URL =", DATABASE_URL)
+def get_connection():
+    conn = psycopg2.connect(
+        DATABASE_URL,
+        sslmode="require"
+    )
+    conn.autocommit = True
+    return conn
 
-conn = psycopg2.connect(DATABASE_URL)
-
-conn.autocommit = True
-
-with conn.cursor() as cursor:
-    cursor.execute("SET search_path TO public")
-
-print("Neon Connected Successfully")
+# Temporary compatibility
+conn = get_connection()
